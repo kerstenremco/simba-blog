@@ -11,6 +11,7 @@ import Stepper from "../components/Stepper";
 const myPost = await client.queries.post({ relativePath: 'hello-world.mdx' })
 const h2headers = myPost.data.post.body.children.filter((el) => el.type === 'h2').map((el) => el.children[0].text)
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import "highlight.js/styles/github-dark-dimmed.css";
 const components = {
     h1: Header1,
     h2: Header2,
@@ -36,11 +37,17 @@ const components = {
         </div>
     </div>
 </Base>
-<script src="/hljs/script.js" is:inline></script>
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', (event) => {
+<script>
+    	import hljs from "highlight.js/lib/core";
+        import javascript from 'highlight.js/lib/languages/javascript';
+        import shell from 'highlight.js/lib/languages/shell';
+        hljs.registerLanguage('javascript', javascript);
+        hljs.registerLanguage('shell', shell);
+        document.addEventListener('DOMContentLoaded', (event) => {
         hljs.highlightAll();
+        
     });
+
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

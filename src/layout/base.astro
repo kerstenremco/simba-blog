@@ -19,8 +19,6 @@ const categoriesQuery = await client.queries.categoriesConnection();
 			href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" href="/hljs/style.css">
-
 		<title>Astro</title>
 	</head>
 	<body class="xl:max-w-screen-xl mx-auto mb-24 px-4">
@@ -44,7 +42,11 @@ const categoriesQuery = await client.queries.categoriesConnection();
 		font-family: "Urbanist", sans-serif;
 	}
 	.hljs {
-		background: none;
+		background: none !important;
+	}
+	pre code.hljs {
+    	display: inline !important;
+		padding: 0 !important;
 	}
 	li > div {
 		display: inline;
@@ -52,4 +54,6 @@ const categoriesQuery = await client.queries.categoriesConnection();
 
 
 </style>
-<script src="/boxicons/boxicons.js" is:inline></script>
+<script>
+	import box from "boxicons/dist/boxicons.js";
+</script>

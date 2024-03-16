@@ -60,10 +60,8 @@ done.
   In this example I’ll create a token for fortigate.masterball.local and save in the TOKEN variable.
   When you get promted for the provisioner key, this is the administrative password
 
-```shell
-TOKEN = $(step ca token fortigate.masterball.local)
-✔ Provisioner: admin(JWK)[kid: qFdStxxxxx - xxxxxxxxx - xxxxxxxx]
-Please enter the password to decrypt the provisioner key:
+```javascript
+console.log(9);
 ```
 
 Now create a certificate and let step-ca sign it.
