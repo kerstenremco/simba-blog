@@ -21,7 +21,7 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "",
+      mediaRoot: "images",
       publicFolder: "public",
     },
   },
@@ -29,9 +29,53 @@ export default defineConfig({
   schema: {
     collections: [
       {
+        name: "categories",
+        label: "Categories",
+        path: "content/categories",
+        fields: [
+          {
+            name: "title",
+            label: "Title",
+            type: "string",
+            required: true,
+          },
+          {
+            name: "slug",
+            label: "Slug",
+            type: "string",
+            required: true,
+          },
+          {
+            name: "icon",
+            label: "Icon",
+            type: "string",
+            required: true,
+          },
+          {
+            name: "iconType",
+            label: "Icon type",
+            type: "string",
+            required: true,
+            options: ["solid", "logo"]
+          },
+          {
+            name: "prio",
+            label: "Priority",
+            type: "number",
+            required: true,
+          },
+          {
+            name: "main_menu",
+            label: "Main Menu",
+            type: "boolean",
+          },
+        ],
+      },
+      {
         name: "post",
         label: "Posts",
         path: "content/posts",
+        format: 'mdx',
         fields: [
           {
             type: "string",
@@ -45,6 +89,25 @@ export default defineConfig({
             name: "body",
             label: "Body",
             isBody: true,
+            templates: [
+              {
+                name: "Alert",
+                label: "Alert",
+                fields: [
+                  {
+                    name: "text",
+                    label: "Text",
+                    type: "string",
+                  },
+                  {
+                    name: "type",
+                    label: "Type",
+                    type: "string",
+                    options: ["warning", "info", "error"],
+                  },
+                ],
+              },
+            ]
           },
         ],
       },

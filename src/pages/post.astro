@@ -1,29 +1,37 @@
 ---
 import Base from "../layout/base.astro";
-import { Header1, Header2, Header3 } from "../components/styles/typo";
+import { Header1, Header2, Header3, Link } from "../components/styles/typo";
+import List from "../components/styles/List";
+import Image from "../components/styles/Image";
+import Code from "../components/Code";
+import Alert from "../components/styles/Alert";
 import CodeBlock from "../components/CodeBlock";
 import {client} from "../../tina/__generated__/client";
-const myPost = await client.queries.post({ relativePath: 'hello-world.md' })
+import Stepper from "../components/Stepper";
+const myPost = await client.queries.post({ relativePath: 'hello-world.mdx' })
+const h2headers = myPost.data.post.body.children.filter((el) => el.type === 'h2').map((el) => el.children[0].text)
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 const components = {
     h1: Header1,
     h2: Header2,
     h3: Header3,
+    a: Link,
+    ol: List,
+    ul: List,
+    Alert: Alert,
+    img: Image,
     code_block: CodeBlock,
+    code: Code,
 };
 ---
 
 <Base>
-    <div class="flex flex-col xl:flex-row gap-12 xl:gap-32">
-        <div>
-            <ul class="steps xl:steps-vertical w-full sticky top-0" id="stepper">
-                <li class="step step-primary">Step 1: Planning Your Animation</li>
-                <li class="step">Step 2: Setting Up Your HTML</li>
-                <li class="step">Conclusion</li>
-            </ul>
+    <div class="xl:flex xl:flex-row xl:gap-12">
+        <div class="xl:basis-1/4 xl:flex-none max-xl:sticky max-xl:top-0">
+            <Stepper headers={h2headers} />
         </div>
-        <div class="bg-slate-100 py-10 px-8 flex-1">
-            <Header1 extraClasses="text-center">Titel</Header1>
+        <div class="px-4 xl:flex-1 xl:min-w-0">
+            <Header1 extraClasses="text-center">wedwedewdewdwehukwegdoewlcdhweuodfhweidhweoudbwednewildwenindiewndwl</Header1>
             <TinaMarkdown content={myPost.data.post.body} components={components} />
         </div>
     </div>

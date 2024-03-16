@@ -1,5 +1,10 @@
 ---
 import Navbar from "../components/Navbar";
+import {client} from "../../tina/__generated__/client";
+const categoriesQuery = await client.queries.categoriesConnection();
+  const categories = categoriesQuery.data.categoriesConnection.edges.map(element => {
+    return {title: element.node.title, slug: element.node.slug, mainMenu: element?.node?.main_menu, icon: element?.node?.icon, iconType: element?.node?.iconType}
+  });
 ---
 
 <html lang="en" data-theme="cupcake">
@@ -15,13 +20,15 @@ import Navbar from "../components/Navbar";
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="/hljs/style.css">
+
 		<title>Astro</title>
 	</head>
-	<body class="w-11/12 xl:max-w-screen-lg mx-auto mb-20">
-		<Navbar />
-		<div class="mt-20">
+	<body class="xl:max-w-screen-xl mx-auto mb-24 px-4">
+		<Navbar categories={categories} />
+		<div class="xl:mt-20">
 			<slot />
 		</div>
+		
 	</body>
 </html>
 <style is:global >
@@ -36,10 +43,13 @@ import Navbar from "../components/Navbar";
 	h6 {
 		font-family: "Urbanist", sans-serif;
 	}
-	p {
-		margin-bottom: 20px;
-	}
 	.hljs {
 		background: none;
 	}
+	li > div {
+		display: inline;
+	}
+
+
 </style>
+<script src="/boxicons/boxicons.js" is:inline></script>
