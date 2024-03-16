@@ -1,0 +1,45 @@
+---
+import Navbar from "../components/Navbar";
+---
+
+<html lang="en" data-theme="cupcake">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/hljs/style.css">
+		<title>Astro</title>
+	</head>
+	<body class="w-11/12 xl:max-w-screen-lg mx-auto mb-20">
+		<Navbar />
+		<div class="mt-20">
+			<slot />
+		</div>
+	</body>
+</html>
+<style is:global >
+	html {
+		font-family: "DM Sans", sans-serif;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: "Urbanist", sans-serif;
+	}
+	p {
+		margin-bottom: 20px;
+	}
+	.hljs {
+		background: none;
+	}
+</style>
