@@ -46,7 +46,6 @@ const h2headers = Astro.props.body.children.filter((el) => el.type === "h2").map
           Written by Remco Kersten
         </div>
       </div>
-      <img class="mask mask-squircle mx-auto mb-6" src={Astro.props.image} />
       <TinaMarkdown content={Astro.props.body} components={components} />
     </div>
   </div>

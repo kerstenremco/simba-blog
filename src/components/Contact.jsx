@@ -78,9 +78,8 @@ export default function Contact() {
               className="textarea textarea-primary w-full"
               placeholder="Message"
               onChange={(e) => setMessage(e.target.value)}
-            >
-              {message}
-            </textarea>
+              value={message}
+            ></textarea>
           </div>
         )}
         <div className="modal-action">
