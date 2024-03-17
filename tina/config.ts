@@ -1,11 +1,7 @@
 import { defineConfig } from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
-const branch =
-  process.env.GITHUB_BRANCH ||
-  process.env.VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  "main";
+const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
 
 export default defineConfig({
   branch,
@@ -29,9 +25,9 @@ export default defineConfig({
   schema: {
     collections: [
       {
-        name: "categories",
-        label: "Categories",
-        path: "content/categories",
+        name: "tags",
+        label: "Tags",
+        path: "content/tags",
         fields: [
           {
             name: "title",
@@ -40,34 +36,10 @@ export default defineConfig({
             required: true,
           },
           {
-            name: "slug",
-            label: "Slug",
+            name: "color",
+            label: "Color",
             type: "string",
-            required: true,
-          },
-          {
-            name: "icon",
-            label: "Icon",
-            type: "string",
-            required: true,
-          },
-          {
-            name: "iconType",
-            label: "Icon type",
-            type: "string",
-            required: true,
-            options: ["solid", "logo"]
-          },
-          {
-            name: "prio",
-            label: "Priority",
-            type: "number",
-            required: true,
-          },
-          {
-            name: "main_menu",
-            label: "Main Menu",
-            type: "boolean",
+            options: ["neutral", "primary", "secondary", "accent", "ghost", "info", "warning", "error", "success"],
           },
         ],
       },
@@ -75,7 +47,7 @@ export default defineConfig({
         name: "post",
         label: "Posts",
         path: "content/posts",
-        format: 'mdx',
+        format: "mdx",
         fields: [
           {
             type: "string",
@@ -83,6 +55,68 @@ export default defineConfig({
             label: "Title",
             isTitle: true,
             required: true,
+          },
+          {
+            type: "string",
+            name: "subtitle",
+            label: "Subtitle",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "customslug",
+            label: "Slug",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "snippet",
+            label: "Snippet",
+            required: true,
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Image",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "special",
+            label: "Special",
+          },
+          {
+            type: "datetime",
+            name: "written",
+            label: "Written",
+            required: true,
+          },
+          {
+            type: "datetime",
+            name: "modified",
+            label: "Last modified",
+          },
+
+          {
+            type: "string",
+            name: "seo_keywords",
+            label: "Seo keywords",
+            required: true,
+          },
+
+          {
+            type: "object",
+            list: true,
+            name: "tags",
+            label: "tags",
+            fields: [
+              {
+                type: "reference",
+                label: "Tag",
+                name: "tag",
+                collections: ["tags"],
+              },
+            ],
           },
           {
             type: "rich-text",
@@ -107,7 +141,7 @@ export default defineConfig({
                   },
                 ],
               },
-            ]
+            ],
           },
         ],
       },

@@ -3,7 +3,7 @@ export default function CodeBlock(props) {
     
     return (
 
-        <div className="mockup-code mt-3 mb-5 -z-10 static">
+        <div className="mockup-code mt-3 mb-5 static">
             {lines.map((line, index) => {
                 const prefix = props.lang == "shell" ? index == 0 ? "$" : "" : undefined;
                 return (
